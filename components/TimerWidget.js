@@ -13,29 +13,30 @@ export default function TimerWidget() {
       start: "Start Timer",
       pause: "Pause",
       reset: "Reset",
-      finished: "Timer finished"
+      finished: "Timer finished",
     },
     fr: {
       start: "Démarrer le minuteur",
       pause: "Pause",
       reset: "Réinitialiser",
-      finished: "Minuteur terminé"
-    }
+      finished: "Minuteur terminé",
+    },
   }[lang];
 
   useEffect(() => {
     let interval = null;
+
     if (running && seconds > 0) {
       interval = setInterval(() => setSeconds((s) => s - 1), 1000);
     }
 
-    if (seconds === 0) {
+    if (seconds === 0 && running) {
       setRunning(false);
       speak(t.finished, lang);
     }
 
-    return () => clearInterval(interval);
-  }, [running, seconds]);
+    return () => interval && clearInterval(interval);
+  }, [running, seconds, lang, t.finished]);
 
   function reset() {
     setSeconds(1500);
@@ -47,14 +48,18 @@ export default function TimerWidget() {
 
   return (
     <div role="timer" aria-live="polite" className="timer-box">
-      <h2>{mm}:{ss}</h2>
+      <h2>
+        {mm}:{ss}
+      </h2>
 
       <div className="button-row">
         <button className="btn-primary" onClick={() => setRunning(!running)}>
           {running ? t.pause : t.start}
         </button>
 
-        <button className="btn" onClick={reset}>{t.reset}</button>
+        <button className="btn" onClick={reset}>
+          {t.reset}
+        </button>
       </div>
     </div>
   );
