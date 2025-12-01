@@ -106,4 +106,47 @@ export default function SettingsPage() {
 
         {/* High contrast */}
         <div className="settings-row">
-          <h2>{t.contra
+          <h2>{t.contrastLabel}</h2>
+          <p>{contrast ? t.contrastOn : t.contrastOff}</p>
+          <button
+            type="button"
+            className="btn"
+            onClick={toggleContrast}
+          >
+            ⚡ {t.toggleContrast}
+          </button>
+        </div>
+
+        {/* Font size */}
+        <div className="settings-row">
+          <h2>{t.fontSize}</h2>
+          <p>{fontScale.toFixed(2)}x</p>
+          <div style={{ display: "flex", gap: "0.5rem" }}>
+            <button
+              type="button"
+              className="btn"
+              onClick={decreaseFont}
+            >
+              ➖ {t.smaller}
+            </button>
+            <button
+              type="button"
+              className="btn"
+              onClick={increaseFont}
+            >
+              ➕ {t.bigger}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        className="btn"
+        onClick={readSettings}
+      >
+        🔊 {t.currentSettings}
+      </button>
+    </GlowCard>
+  );
+}
