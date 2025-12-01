@@ -3,9 +3,9 @@
 A modern, accessible React-based prototype built for the **G7 Rapid Solution Labs Challenge**.
 GovGuide AI transforms complex government policies, regulations, and forms into clear **plain-language guidance** to support Canadians and public servants.
 
-Live Demo: *(https://gov-guide-ai-seven.vercel.app/)*
-GitHub Repo: *(https://github.com/asma675/GovGuideAI.git)*
-Youtube Demo: *(https://youtu.be/Ts98HVf2w6I)*
+* Live Demo: *(https://gov-guide-ai-seven.vercel.app/)*
+* GitHub Repo: *(https://github.com/asma675/GovGuideAI.git)*
+* Youtube Demo: *(https://youtu.be/Ts98HVf2w6I)*
 
 ---
 
