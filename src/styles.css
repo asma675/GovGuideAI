@@ -435,3 +435,70 @@ body {
     padding: 16px;
   }
 }
+
+/* Accessibility additions */
+:root {
+  --font-scale: 1;
+}
+
+body {
+  font-size: calc(16px * var(--font-scale));
+}
+
+/* High-contrast theme toggle */
+body.high-contrast {
+  background: #000000;
+  color: #ffffff;
+}
+
+body.high-contrast .card {
+  background: #000000;
+  border-color: #ffffff;
+}
+
+body.high-contrast .card-header {
+  border-bottom-color: #ffffff;
+}
+
+body.high-contrast .primary-button,
+body.high-contrast .pill.active {
+  background: #ffffff;
+  color: #000000;
+}
+
+/* Accessibility toolbar layout */
+.a11y-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 16px 0 20px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  background: radial-gradient(
+      circle at top left,
+      rgba(148, 163, 184, 0.25),
+      transparent 55%
+    ),
+    rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(148, 163, 184, 0.5);
+}
+
+.a11y-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.a11y-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+/* Strong focus outlines for keyboard users */
+button:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
