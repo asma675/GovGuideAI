@@ -11,9 +11,10 @@ export default function A11yMenu() {
   return (
     <div className="a11y-menu" aria-label="Accessibility Controls">
       <button onClick={toggleLang}>{lang === "en" ? "FR" : "EN"}</button>
-      <button onClick={toggleTheme}>{theme === "light" ? "Dark" : "Light"}</button>
+<button onClick={toggleTheme}>
+  {theme === "light" ? "Dark mode" : "Light mode"}
+</button>
       <button onClick={toggleContrast}>{contrast ? "Normal Contrast" : "High Contrast"}</button>
-
       <button onClick={increaseFont} aria-label="Increase Text Size">A+</button>
       <button onClick={decreaseFont} aria-label="Decrease Text Size">A-</button>
     </div>
