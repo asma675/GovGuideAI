@@ -1,18 +1,53 @@
 import React from "react";
 
-function ExplanationPanel({ analysis }) {
+function ExplanationPanel({ analysis, lang = "en", plainMode }) {
+  const strings =
+    {
+      en: {
+        title: "2 · Plain-Language Explanation",
+        intro:
+          "Run an analysis to see summary, obligations, eligibility, documents, and next steps.",
+        emptyBody:
+          "Once you click Analyze Policy, this panel will show a plain-language breakdown and checklists you can use in your video demo.",
+        summaryHeading: "High-Level Summary",
+        obligationsHeading: "Key Obligations & Responsibilities",
+        eligibilityHeading: "Eligibility Signals",
+        documentsHeading: "Documents & Proof Mentioned",
+        stepsHeading: "Suggested Next Steps",
+        none:
+          "No items detected. Try including more specific sentences about duties, eligibility, or steps.",
+        disclaimerTitle: "Disclaimer:",
+        disclaimerBody:
+          "This is a prototype for demonstration only. It does not provide legal advice or make binding eligibility decisions.",
+      },
+      fr: {
+        title: "2 · Explication en langage simple",
+        intro:
+          "Lancez une analyse pour voir le résumé, les obligations, l'admissibilité, les documents et les prochaines étapes.",
+        emptyBody:
+          "Une fois que vous aurez cliqué sur Analyser le texte, ce panneau affichera une explication en langage simple et des listes de contrôle pour votre démonstration.",
+        summaryHeading: "Résumé général",
+        obligationsHeading: "Principales obligations et responsabilités",
+        eligibilityHeading: "Indications d’admissibilité",
+        documentsHeading: "Documents et preuves mentionnés",
+        stepsHeading: "Prochaines étapes suggérées",
+        none:
+          "Aucun élément détecté. Essayez d'ajouter des phrases plus précises concernant les obligations, l'admissibilité ou les étapes.",
+        disclaimerTitle: "Avertissement :",
+        disclaimerBody:
+          "Il s'agit d'un prototype à des fins de démonstration uniquement. Il ne fournit pas de conseils juridiques ni de décisions d'admissibilité.",
+      },
+    }[lang];
+
   if (!analysis) {
     return (
       <section className="card card-output card-empty">
         <div className="card-header">
-          <h2>2 · Plain-Language Explanation</h2>
-          <p>Run an analysis to see summary, obligations, eligibility, and next steps.</p>
+          <h2>{strings.title}</h2>
+          <p>{strings.intro}</p>
         </div>
         <div className="empty-state">
-          <p>
-            Once you click <strong>Analyze Policy</strong>, this panel will show a
-            plain-language breakdown and checklists you can use in your video demo.
-          </p>
+          <p>{strings.emptyBody}</p>
         </div>
       </section>
     );
@@ -20,63 +55,77 @@ function ExplanationPanel({ analysis }) {
 
   const { summary, obligations, eligibility, documents, steps } = analysis;
 
-  const renderSection = (title, items, emptyText) => (
-    <div className="panel-section">
-      <div className="panel-section-header">
-        <h3>{title}</h3>
-      </div>
-      {items && items.length > 0 ? (
-        <ul className="bullet-list">
-          {items.map((item, idx) => (
-            <li key={idx}>{item}</li>
-          ))}
-        </ul>
-      ) : (
-        <p className="muted">{emptyText}</p>
-      )}
-    </div>
-  );
-
   return (
     <section className="card card-output">
       <div className="card-header">
-        <h2>2 · Plain-Language Explanation</h2>
-        <p>
-          A simple, transparent breakdown based on the text you provided. This is a rules-based demo, not a final production AI.
-        </p>
+        <h2>{strings.title}</h2>
+        <p>{strings.intro}</p>
       </div>
 
-      <div className="summary-block">
-        <h3>High-Level Summary</h3>
+      <div className="output-section">
+        <h3>{strings.summaryHeading}</h3>
         <p>{summary}</p>
       </div>
 
-      <div className="panel-grid">
-        {renderSection(
-          "Key Obligations",
-          obligations,
-          "No explicit obligations detected. Try adding more detailed policy text."
-        )}
-        {renderSection(
-          "Eligibility Signals",
-          eligibility,
-          "No clear eligibility statements detected."
-        )}
-        {renderSection(
-          "Required Documents",
-          documents,
-          "No specific documents detected. Include references to proof, ID, or certificates."
-        )}
-        {renderSection(
-          "Suggested Steps & Actions",
-          steps,
-          "No steps detected. Include sentences that start with submit/apply/complete/etc."
-        )}
-      </div>
+      {!plainMode && (
+        <>
+          <div className="output-section">
+            <h3>{strings.obligationsHeading}</h3>
+            {obligations && obligations.length ? (
+              <ul>
+                {obligations.map((line, idx) => (
+                  <li key={idx}>{line}</li>
+                ))}
+              </ul>
+            ) : (
+              <p>{strings.none}</p>
+            )}
+          </div>
+
+          <div className="output-section">
+            <h3>{strings.eligibilityHeading}</h3>
+            {eligibility && eligibility.length ? (
+              <ul>
+                {eligibility.map((line, idx) => (
+                  <li key={idx}>{line}</li>
+                ))}
+              </ul>
+            ) : (
+              <p>{strings.none}</p>
+            )}
+          </div>
+
+          <div className="output-section">
+            <h3>{strings.documentsHeading}</h3>
+            {documents && documents.length ? (
+              <ul>
+                {documents.map((line, idx) => (
+                  <li key={idx}>{line}</li>
+                ))}
+              </ul>
+            ) : (
+              <p>{strings.none}</p>
+            )}
+          </div>
+
+          <div className="output-section">
+            <h3>{strings.stepsHeading}</h3>
+            {steps && steps.length ? (
+              <ol>
+                {steps.map((line, idx) => (
+                  <li key={idx}>{line}</li>
+                ))}
+              </ol>
+            ) : (
+              <p>{strings.none}</p>
+            )}
+          </div>
+        </>
+      )}
 
       <div className="disclaimer">
         <p>
-          <strong>Disclaimer:</strong> Prototype for demonstration only. Does not provide legal advice or make binding eligibility decisions.
+          <strong>{strings.disclaimerTitle}</strong> {strings.disclaimerBody}
         </p>
       </div>
     </section>
