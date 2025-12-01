@@ -7,25 +7,37 @@ export function useTasks() {
   const [streak, setStreak] = useState(0);
   const [totalMinutesFocused, setTotalMinutesFocused] = useState(0);
 
-  // Load from localStorage
+  // Load from localStorage on first render
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-    setTasks(saved);
-    // simple totals
-    const minutes = saved.reduce(
+
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      if (Array.isArray(saved)) {
+        setTasks(saved);
+      }
+    } catch (e) {
+      // if parsing fails, just start fresh
+      setTasks([]);
+    }
+  }, []);
+
+  // Whenever tasks change: recalc totals + save to localStorage
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // Total minutes
+    const minutes = tasks.reduce(
       (sum, t) => sum + (Number(t.minutes) || 0),
       0
     );
-    const completed = saved.filter((t) => t.completed).length;
     setTotalMinutesFocused(minutes);
-    // dummy streak = completed days count (you can improve later)
-    setStreak(completed > 0 ? 1 : 0);
-  }, []);
 
-  // Save anytime tasks change
-  useEffect(() => {
-    if (typeof window === "undefined") return;
+    // Simple streak placeholder: 1 if anything completed, else 0
+    const completedCount = tasks.filter((t) => t.completed).length;
+    setStreak(completedCount > 0 ? 1 : 0);
+
+    // Persist tasks
     localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
   }, [tasks]);
 
