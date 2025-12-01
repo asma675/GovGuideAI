@@ -1,0 +1,301 @@
+/* ============================================================
+   GLOBAL WCAG 2.1 AA + GLOW THEME SYSTEM
+   Supports:
+   • Dark Glow Mode
+   • Light Glow Mode
+   • High Contrast Mode
+   • Large Text Mode
+   • Plain-Language Mode
+   • Keyboard-only navigation
+   ============================================================ */
+
+/* Color Variables ------------------------------------------------------------*/
+:root {
+  --accent-glow: #9b5bff;
+  --accent-blue: #00eaff;
+  --focus-yellow: #ffdd00;
+
+  /* Light Glow Mode Colors */
+  --light-bg: #fafaff;
+  --light-card: rgba(255, 255, 255, 0.75);
+  --light-text: #111;
+  --light-muted: #555;
+
+  /* Dark Glow Mode Colors */
+  --dark-bg: #060612;
+  --dark-card: rgba(18, 15, 30, 0.65);
+  --dark-text: #f5f5ff;
+  --dark-muted: #b8b4d6;
+}
+
+/* Base ----------------------------------------------------------------------*/
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, sans-serif;
+  line-height: 1.7;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Typography Scaling --------------------------------------------------------*/
+body.large-text {
+  font-size: 20px !important;
+}
+
+/* ========================================================================== */
+/* DARK GLOW THEME */
+/* ========================================================================== */
+body.dark-glow {
+  background: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+body.dark-glow .glow-card,
+body.dark-glow .card {
+  background: var(--dark-card);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 24px;
+
+  box-shadow:
+    0 0 25px rgba(155, 91, 255, 0.25),
+    0 0 55px rgba(0, 234, 255, 0.2);
+
+  backdrop-filter: blur(14px);
+}
+
+/* ========================================================================== */
+/* LIGHT GLOW THEME */
+/* ========================================================================== */
+body.light-glow {
+  background: var(--light-bg);
+  color: var(--light-text);
+}
+
+body.light-glow .glow-card,
+body.light-glow .card {
+  background: var(--light-card);
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  border-radius: 18px;
+  padding: 24px;
+
+  box-shadow:
+    0 0 20px rgba(155, 91, 255, 0.15),
+    0 0 40px rgba(0, 234, 255, 0.1);
+
+  backdrop-filter: blur(12px);
+}
+
+/* ========================================================================== */
+/* HIGH-CONTRAST MODE */
+/* ========================================================================== */
+body.high-contrast {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+body.high-contrast .glow-card,
+body.high-contrast button,
+body.high-contrast input,
+body.high-contrast textarea {
+  border: 2px solid #fff !important;
+  background: #000 !important;
+  color: #fff !important;
+}
+
+/* ========================================================================== */
+/* PLAIN LANGUAGE MODE */
+/* ========================================================================== */
+body.plain-language {
+  letter-spacing: 0.3px;
+  word-spacing: 2px;
+  line-height: 1.85;
+}
+
+/* ======================================================================== */
+/* SKIP LINK */
+/* ======================================================================== */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--focus-yellow);
+  padding: 10px;
+  color: #000;
+  font-weight: bold;
+  z-index: 9999;
+  border-radius: 4px;
+}
+
+.skip-link:focus {
+  left: 12px;
+}
+
+/* ======================================================================== */
+/* FOCUS RING (Keyboard Navigation) */
+/* ======================================================================== */
+:focus {
+  outline: 3px solid var(--focus-yellow) !important;
+  outline-offset: 3px;
+}
+
+/* ======================================================================== */
+/* NAVIGATION */
+/* ======================================================================== */
+.header {
+  padding: 18px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.nav-item {
+  padding: 8px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+body.dark-glow .nav-item {
+  color: var(--dark-muted);
+}
+
+body.light-glow .nav-item {
+  color: var(--light-muted);
+}
+
+.nav-item:hover,
+.nav-item:focus {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ======================================================================== */
+/* BUTTONS */
+/* ======================================================================== */
+button,
+.btn {
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  transition: 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--accent-blue),
+    var(--accent-glow)
+  );
+  color: #000;
+  font-weight: 600;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.btn:focus {
+  outline: 3px solid var(--focus-yellow);
+}
+
+/* ======================================================================== */
+/* FORMS */
+/* ======================================================================== */
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 6px;
+  margin-bottom: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+}
+
+textarea {
+  min-height: 130px;
+}
+
+/* ======================================================================== */
+/* LAYOUT */
+/* ======================================================================== */
+.main-content {
+  padding: 24px;
+}
+
+/* Utility spacing */
+.button-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+/* ======================================================================== */
+/* CARDS */
+/* ======================================================================== */
+.glow-card h2,
+.card h2 {
+  margin-top: 0;
+  font-size: 1.4rem;
+}
+
+.glow-card,
+.card {
+  margin-bottom: 28px;
+}
+
+/* ======================================================================== */
+/* TASK LIST */
+/* ======================================================================== */
+.task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ======================================================================== */
+/* TIMER */
+/* ======================================================================== */
+.timer-box {
+  text-align: center;
+}
+
+.timer-box h2 {
+  font-size: 3rem;
+  margin: 12px 0;
+}
+
+/* ======================================================================== */
+/* SCREEN READER VISIBILITY */
+/* ======================================================================== */
+.sr-live-region {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
