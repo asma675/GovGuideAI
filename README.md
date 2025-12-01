@@ -143,3 +143,6 @@ MIT License — free to use, modify, and expand.
 Built by **Asma Ahmed** for the
 **G7 Rapid Solution Labs Challenge 2025–2026**
 Focus: Government innovation, responsible AI, accessibility, and public-sector technology.
+
+This prototype is submitted for the G7 GovAI Challenge. 
+Reuse or redistribution is not permitted without permission.
