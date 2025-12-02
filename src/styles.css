@@ -11,7 +11,7 @@
   --font-scale: 1;
 }
 
-/* base */
+/* base ---------------------------------------------------- */
 
 *,
 *::before,
@@ -19,11 +19,15 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: calc(17px * var(--font-scale)); /* slightly bigger */
+}
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  background: radial-gradient(circle at top left, #1f1036, #020010 60%);
+  background: radial-gradient(circle at top left, #20113a, #020010 65%);
   color: var(--text-main);
   min-height: 100vh;
 }
@@ -33,16 +37,12 @@ body.high-contrast {
   color: #fff;
 }
 
-body.high-contrast .card,
-body.high-contrast .card-input,
-body.high-contrast .card-output {
+body.high-contrast .card {
   background: #000 !important;
   border-color: #fff !important;
 }
 
-html {
-  font-size: calc(16px * var(--font-scale));
-}
+/* root container & glow ---------------------------------- */
 
 .app-root {
   position: relative;
@@ -50,8 +50,6 @@ html {
   margin: 0 auto;
   padding: 1.5rem 1.5rem 2.5rem;
 }
-
-/* glow orbits */
 
 .glow-orbit {
   position: fixed;
@@ -85,14 +83,14 @@ html {
   background: radial-gradient(circle, #a855f7, transparent 65%);
 }
 
-/* header */
+/* header -------------------------------------------------- */
 
 .top-nav {
   display: flex;
   justify-content: space-between;
   gap: 1.5rem;
   align-items: center;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.3rem;
 }
 
 .brand {
@@ -102,11 +100,11 @@ html {
 }
 
 .logo-mark {
-  width: 52px;
-  height: 52px;
+  width: 58px;
+  height: 58px;
   border-radius: 999px;
   background: radial-gradient(circle at 30% 30%, #fed7aa, #fb7185 45%, #7c3aed);
-  box-shadow: 0 0 35px rgba(248, 113, 113, 0.75);
+  box-shadow: 0 0 42px rgba(248, 113, 113, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -119,11 +117,6 @@ html {
   background: #fefce8;
 }
 
-.brand-text h1 {
-  margin: 0;
-  font-size: 1.6rem;
-}
-
 .brand-kicker {
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -131,10 +124,15 @@ html {
   color: #e5e7eb;
 }
 
+.brand-text h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
 .brand-text p {
-  margin: 0.15rem 0 0;
+  margin: 0.18rem 0 0;
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .badge-cluster {
@@ -145,9 +143,9 @@ html {
 }
 
 .badge {
-  padding: 0.2rem 0.75rem;
+  padding: 0.25rem 0.8rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.38);
   font-size: 0.7rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -157,7 +155,7 @@ html {
   background: transparent;
 }
 
-/* accessibility toolbar */
+/* a11y bar ------------------------------------------------ */
 
 .a11y-toolbar {
   display: flex;
@@ -188,14 +186,14 @@ html {
   color: var(--text-muted);
 }
 
-/* pills & buttons */
+/* pills --------------------------------------------------- */
 
 .pill {
   border-radius: 999px;
   border: 1px solid rgba(148, 163, 184, 0.7);
   background: rgba(15, 23, 42, 0.9);
   color: inherit;
-  padding: 0.25rem 0.8rem;
+  padding: 0.25rem 0.85rem;
   font-size: 0.8rem;
   cursor: pointer;
 }
@@ -203,7 +201,7 @@ html {
 .pill.active {
   background: linear-gradient(135deg, var(--accent), var(--accent-strong));
   border-color: transparent;
-  box-shadow: 0 0 16px rgba(129, 140, 248, 0.8);
+  box-shadow: 0 0 18px rgba(129, 140, 248, 0.95);
 }
 
 button:focus-visible,
@@ -213,7 +211,7 @@ input:focus-visible {
   outline-offset: 2px;
 }
 
-/* layout */
+/* layout -------------------------------------------------- */
 
 .layout {
   display: grid;
@@ -221,32 +219,36 @@ input:focus-visible {
   gap: 1.5rem;
 }
 
-/* cards */
+/* cards --------------------------------------------------- */
 
 .card {
-  border-radius: 20px;
+  border-radius: 24px;
   background: var(--card);
   border: 1px solid rgba(148, 163, 184, 0.45);
-  box-shadow: 0 22px 45px rgba(15, 23, 42, 0.9);
-  padding: 1.2rem 1.3rem;
+  box-shadow: 0 26px 55px rgba(15, 23, 42, 0.95);
+  padding: 1.3rem 1.4rem 1.4rem;
 }
 
 .card-input {
-  background: radial-gradient(circle at top left, #2a1749, #050317 65%);
+  background: radial-gradient(circle at top left, #2a1749, #050317 68%);
+}
+
+.card-output {
+  background: radial-gradient(circle at top right, #1b2149, #050317 72%);
 }
 
 .card-header h2 {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 1.15rem;
 }
 
 .card-header p {
   margin: 0.3rem 0 0.6rem;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   color: var(--text-muted);
 }
 
-/* fields */
+/* fields -------------------------------------------------- */
 
 .field {
   margin-top: 0.75rem;
@@ -263,12 +265,12 @@ input:focus-visible {
 
 .field-textarea {
   width: 100%;
-  min-height: 260px;
-  border-radius: 16px;
+  min-height: 270px;
+  border-radius: 18px;
   border: 1px solid rgba(148, 163, 184, 0.6);
   background: rgba(5, 3, 24, 0.95);
   color: inherit;
-  padding: 0.75rem;
+  padding: 0.8rem;
   resize: vertical;
 }
 
@@ -278,10 +280,10 @@ input:focus-visible {
   border: 1px solid rgba(148, 163, 184, 0.6);
   background: rgba(5, 3, 24, 0.95);
   color: inherit;
-  padding: 0.55rem 0.85rem;
+  padding: 0.6rem 0.9rem;
 }
 
-/* mode toggle */
+/* mode toggle & primary button --------------------------- */
 
 .mode-toggle {
   display: inline-flex;
@@ -289,18 +291,16 @@ input:focus-visible {
   margin-top: 0.5rem;
 }
 
-/* buttons */
-
 .primary-button {
   margin-top: 0.9rem;
-  padding: 0.65rem 1.4rem;
+  padding: 0.7rem 1.5rem;
   border-radius: 999px;
   border: none;
   cursor: pointer;
   font-weight: 500;
   background: linear-gradient(135deg, var(--accent), var(--accent-strong));
   color: #fff;
-  box-shadow: 0 15px 35px rgba(76, 29, 149, 0.85);
+  box-shadow: 0 18px 40px rgba(76, 29, 149, 0.9);
 }
 
 .primary-button:disabled {
@@ -310,27 +310,47 @@ input:focus-visible {
 
 .demo-note {
   margin-top: 0.5rem;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
 }
 
-/* output panel */
+/* placeholder dashed box --------------------------------- */
 
-.card-output {
-  background: radial-gradient(circle at top right, #1d2448, #050316 70%);
+.placeholder-box {
+  margin-top: 0.9rem;
+  padding: 0.95rem 1.05rem;
+  border-radius: 20px;
+  border: 1px dashed rgba(148, 163, 184, 0.9);
+  background: radial-gradient(
+      circle at top left,
+      rgba(30, 64, 175, 0.3),
+      transparent 60%
+    ),
+    rgba(15, 23, 42, 0.9);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
 }
 
-.card-empty {
-  min-height: 260px;
+.placeholder-strong {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.95rem;
 }
+
+.placeholder {
+  margin: 0.3rem 0 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* output sections ---------------------------------------- */
 
 .output-section {
-  margin-top: 0.8rem;
+  margin-top: 0.85rem;
 }
 
 .output-section h3 {
   margin: 0 0 0.25rem;
-  font-size: 0.95rem;
+  font-size: 0.98rem;
 }
 
 .output-section p,
@@ -340,40 +360,34 @@ input:focus-visible {
 
 .output-section ul,
 .output-section ol {
-  margin: 0.2rem 0 0.45rem 1.1rem;
+  margin: 0.25rem 0 0.5rem 1.1rem;
   padding-left: 1.1rem;
-}
-
-.placeholder {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  margin-top: 0.4rem;
 }
 
 .plain-note {
   margin-top: 0.4rem;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: #fde68a;
 }
 
 .disclaimer {
-  margin-top: 0.85rem;
+  margin-top: 0.9rem;
   font-size: 0.8rem;
   color: var(--text-muted);
 }
 
-/* errors */
+/* error banner ------------------------------------------- */
 
 .error-banner {
   margin-top: 0.6rem;
   border-radius: 999px;
-  padding: 0.4rem 0.8rem;
+  padding: 0.4rem 0.85rem;
   font-size: 0.82rem;
   background: rgba(239, 68, 68, 0.12);
   border: 1px solid rgba(248, 113, 113, 0.7);
 }
 
-/* footer */
+/* footer ------------------------------------------------- */
 
 .footer {
   margin-top: 2rem;
@@ -382,7 +396,7 @@ input:focus-visible {
   color: var(--text-muted);
 }
 
-/* responsive */
+/* responsive -------------------------------------------- */
 
 @media (max-width: 900px) {
   .layout {
