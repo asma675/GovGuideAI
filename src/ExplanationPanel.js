@@ -1,54 +1,50 @@
 import React from "react";
 
-function ExplanationPanel({ analysis, lang = "en", plainMode }) {
-  const strings =
+function ExplanationPanel({ lang, analysis, plainMode }) {
+  const t =
     {
       en: {
         title: "2 · Plain-Language Explanation",
-        intro:
-          "Run an analysis to see summary, obligations, eligibility, documents, and next steps.",
-        emptyBody:
-          "Once you click Analyze Policy, this panel will show a plain-language breakdown and checklists you can use in your video demo.",
-        summaryHeading: "High-Level Summary",
-        obligationsHeading: "Key Obligations & Responsibilities",
-        eligibilityHeading: "Eligibility Signals",
-        documentsHeading: "Documents & Proof Mentioned",
-        stepsHeading: "Suggested Next Steps",
+        subtitle:
+          "A simple, transparent breakdown based on the text you provided. This is a rules-based demo, not a final production AI.",
+        empty:
+          "Paste a policy or URL on the left and choose “Analyze Policy” to see a demo explanation here.",
+        summary: "High-Level Summary",
+        obligations: "Key Obligations",
+        eligibility: "Eligibility Signals",
+        documents: "Required Documents",
+        steps: "Suggested Steps & Actions",
         none:
-          "No items detected. Try including more specific sentences about duties, eligibility, or steps.",
-        disclaimerTitle: "Disclaimer:",
-        disclaimerBody:
-          "This is a prototype for demonstration only. It does not provide legal advice or make binding eligibility decisions.",
+          "No specific items detected. Try including more details about duties, documents, or steps.",
+        disclaimer:
+          "Disclaimer: Prototype for demonstration only. Does not provide legal advice or make binding eligibility decisions."
       },
       fr: {
         title: "2 · Explication en langage simple",
-        intro:
-          "Lancez une analyse pour voir le résumé, les obligations, l'admissibilité, les documents et les prochaines étapes.",
-        emptyBody:
-          "Une fois que vous aurez cliqué sur Analyser le texte, ce panneau affichera une explication en langage simple et des listes de contrôle pour votre démonstration.",
-        summaryHeading: "Résumé général",
-        obligationsHeading: "Principales obligations et responsabilités",
-        eligibilityHeading: "Indications d’admissibilité",
-        documentsHeading: "Documents et preuves mentionnés",
-        stepsHeading: "Prochaines étapes suggérées",
+        subtitle:
+          "Un aperçu simple et transparent basé sur le texte fourni. Il s’agit d’une démo à base de règles, pas d’une IA de production.",
+        empty:
+          "Collez une politique ou une URL à gauche puis cliquez sur « Analyser la politique » pour voir une explication de démonstration ici.",
+        summary: "Résumé général",
+        obligations: "Obligations clés",
+        eligibility: "Signaux d’admissibilité",
+        documents: "Documents requis",
+        steps: "Étapes et actions suggérées",
         none:
-          "Aucun élément détecté. Essayez d'ajouter des phrases plus précises concernant les obligations, l'admissibilité ou les étapes.",
-        disclaimerTitle: "Avertissement :",
-        disclaimerBody:
-          "Il s'agit d'un prototype à des fins de démonstration uniquement. Il ne fournit pas de conseils juridiques ni de décisions d'admissibilité.",
-      },
+          "Aucun élément précis détecté. Essayez d’ajouter plus de détails sur les responsabilités, les documents ou les étapes.",
+        disclaimer:
+          "Avertissement : prototype de démonstration uniquement. Ne constitue pas un avis juridique ni une décision d’admissibilité."
+      }
     }[lang];
 
   if (!analysis) {
     return (
       <section className="card card-output card-empty">
         <div className="card-header">
-          <h2>{strings.title}</h2>
-          <p>{strings.intro}</p>
+          <h2>{t.title}</h2>
+          <p>{t.subtitle}</p>
         </div>
-        <div className="empty-state">
-          <p>{strings.emptyBody}</p>
-        </div>
+        <p className="placeholder">{t.empty}</p>
       </section>
     );
   }
@@ -58,19 +54,25 @@ function ExplanationPanel({ analysis, lang = "en", plainMode }) {
   return (
     <section className="card card-output">
       <div className="card-header">
-        <h2>{strings.title}</h2>
-        <p>{strings.intro}</p>
+        <h2>{t.title}</h2>
+        <p>{t.subtitle}</p>
+        {plainMode && (
+          <p className="plain-note">
+            Plain-language mode is ON. Technical phrasing is softened so the
+            core message is easier to understand.
+          </p>
+        )}
       </div>
 
       <div className="output-section">
-        <h3>{strings.summaryHeading}</h3>
+        <h3>{t.summary}</h3>
         <p>{summary}</p>
       </div>
 
       {!plainMode && (
         <>
           <div className="output-section">
-            <h3>{strings.obligationsHeading}</h3>
+            <h3>{t.obligations}</h3>
             {obligations && obligations.length ? (
               <ul>
                 {obligations.map((line, idx) => (
@@ -78,25 +80,17 @@ function ExplanationPanel({ analysis, lang = "en", plainMode }) {
                 ))}
               </ul>
             ) : (
-              <p>{strings.none}</p>
+              <p>{t.none}</p>
             )}
           </div>
 
           <div className="output-section">
-            <h3>{strings.eligibilityHeading}</h3>
-            {eligibility && eligibility.length ? (
-              <ul>
-                {eligibility.map((line, idx) => (
-                  <li key={idx}>{line}</li>
-                ))}
-              </ul>
-            ) : (
-              <p>{strings.none}</p>
-            )}
+            <h3>{t.eligibility}</h3>
+            <p>{eligibility || t.none}</p>
           </div>
 
           <div className="output-section">
-            <h3>{strings.documentsHeading}</h3>
+            <h3>{t.documents}</h3>
             {documents && documents.length ? (
               <ul>
                 {documents.map((line, idx) => (
@@ -104,12 +98,12 @@ function ExplanationPanel({ analysis, lang = "en", plainMode }) {
                 ))}
               </ul>
             ) : (
-              <p>{strings.none}</p>
+              <p>{t.none}</p>
             )}
           </div>
 
           <div className="output-section">
-            <h3>{strings.stepsHeading}</h3>
+            <h3>{t.steps}</h3>
             {steps && steps.length ? (
               <ol>
                 {steps.map((line, idx) => (
@@ -117,17 +111,13 @@ function ExplanationPanel({ analysis, lang = "en", plainMode }) {
                 ))}
               </ol>
             ) : (
-              <p>{strings.none}</p>
+              <p>{t.none}</p>
             )}
           </div>
         </>
       )}
 
-      <div className="disclaimer">
-        <p>
-          <strong>{strings.disclaimerTitle}</strong> {strings.disclaimerBody}
-        </p>
-      </div>
+      <p className="disclaimer">{t.disclaimer}</p>
     </section>
   );
 }
