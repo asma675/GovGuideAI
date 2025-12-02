@@ -3,11 +3,11 @@
 A modern, accessible React-based prototype built for the **G7 Rapid Solution Labs Challenge**.
 GovGuide AI transforms complex government policies, regulations, and forms into clear **plain-language guidance** to support Canadians and public servants.
 
-* Live Demo: *(https://gov-guide-ai-seven.vercel.app/)*
-* GitHub Repo: *(https://github.com/asma675/GovGuideAI.git)*
-* Youtube Demo: Orginal App - *(https://youtu.be/Ts98HVf2w6I)*
-* Updated Youtube Demo Including Accessibility: https://youtu.be/E4givpGrdC0*
-To ensure accessibility for people with varying literacy levels or disabilities, GovGuide AI includes screen reader support, high-contrast mode, zoomable text, audio read-aloud, keyboard-only navigation, and automatic French/multilingual translation options. The UI features a clean, glowing purple design for clarity and usability.
+* Live Demo: https://gov-guide-ai-seven.vercel.app/
+* GitHub Repo: https://github.com/asma675/GovGuideAI.git
+* Youtube Demo: Orginal App - https://youtu.be/Ts98HVf2w6I
+# **Updated Youtube Demo Including Accessibility: https://youtu.be/E4givpGrdC0**
+* To ensure accessibility for people with varying literacy levels or disabilities, GovGuide AI includes screen reader support, high-contrast mode, zoomable text, audio read-aloud, keyboard-only navigation, and automatic French/multilingual translation options. The UI features a clean, glowing purple design for clarity and usability.
 ---
 
 ## 🔍 **What GovGuide AI Does**
