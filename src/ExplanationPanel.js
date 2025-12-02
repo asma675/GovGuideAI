@@ -7,8 +7,9 @@ function ExplanationPanel({ lang, analysis, plainMode }) {
         title: "2 · Plain-Language Explanation",
         subtitle:
           "Run an analysis to see summary, obligations, eligibility, documents, and next steps.",
-        empty:
-          "Paste a policy or URL on the left and choose “Analyze Policy” to see a demo explanation here.",
+        emptyTitle: "Once you click Analyze Policy,",
+        emptyBody:
+          "this panel will show a plain-language breakdown and checklists you can use in your video demo.",
         summary: "High-Level Summary",
         obligations: "Key Obligations",
         eligibility: "Eligibility Signals",
@@ -23,8 +24,9 @@ function ExplanationPanel({ lang, analysis, plainMode }) {
         title: "2 · Explication en langage simple",
         subtitle:
           "Lancez une analyse pour voir le résumé, les obligations, l’admissibilité, les documents et les prochaines étapes.",
-        empty:
-          "Collez une politique ou une URL à gauche puis cliquez sur « Analyser la politique » pour voir une explication de démonstration ici.",
+        emptyTitle: "Une fois que vous cliquez sur Analyser la politique,",
+        emptyBody:
+          "ce panneau affichera une explication en langage simple et des listes de contrôle que vous pouvez utiliser dans votre vidéo.",
         summary: "Résumé général",
         obligations: "Obligations clés",
         eligibility: "Signaux d’admissibilité",
@@ -37,6 +39,7 @@ function ExplanationPanel({ lang, analysis, plainMode }) {
       }
     }[lang];
 
+  // ---------- EMPTY STATE (before Analyze Policy) ----------
   if (!analysis) {
     return (
       <section className="card card-output card-empty">
@@ -44,11 +47,16 @@ function ExplanationPanel({ lang, analysis, plainMode }) {
           <h2>{t.title}</h2>
           <p>{t.subtitle}</p>
         </div>
-        <p className="placeholder">{t.empty}</p>
+
+        <div className="placeholder-box" aria-live="polite">
+          <p className="placeholder-strong">{t.emptyTitle}</p>
+          <p className="placeholder">{t.emptyBody}</p>
+        </div>
       </section>
     );
   }
 
+  // ---------- WITH RESULTS ----------
   const { summary, obligations, eligibility, documents, steps } = analysis;
 
   return (
