@@ -6,7 +6,7 @@ function ExplanationPanel({ lang, analysis, plainMode }) {
       en: {
         title: "2 · Plain-Language Explanation",
         subtitle:
-          "A simple, transparent breakdown based on the text you provided. This is a rules-based demo, not a final production AI.",
+          "Run an analysis to see summary, obligations, eligibility, documents, and next steps.",
         empty:
           "Paste a policy or URL on the left and choose “Analyze Policy” to see a demo explanation here.",
         summary: "High-Level Summary",
@@ -17,12 +17,12 @@ function ExplanationPanel({ lang, analysis, plainMode }) {
         none:
           "No specific items detected. Try including more details about duties, documents, or steps.",
         disclaimer:
-          "Disclaimer: Prototype for demonstration only. Does not provide legal advice or make binding eligibility decisions."
+          "Disclaimer: This is a prototype for demonstration only. It does not provide legal advice or make binding eligibility decisions."
       },
       fr: {
         title: "2 · Explication en langage simple",
         subtitle:
-          "Un aperçu simple et transparent basé sur le texte fourni. Il s’agit d’une démo à base de règles, pas d’une IA de production.",
+          "Lancez une analyse pour voir le résumé, les obligations, l’admissibilité, les documents et les prochaines étapes.",
         empty:
           "Collez une politique ou une URL à gauche puis cliquez sur « Analyser la politique » pour voir une explication de démonstration ici.",
         summary: "Résumé général",
@@ -64,58 +64,59 @@ function ExplanationPanel({ lang, analysis, plainMode }) {
         )}
       </div>
 
+      {/* Summary */}
       <div className="output-section">
         <h3>{t.summary}</h3>
         <p>{summary}</p>
       </div>
 
-      {!plainMode && (
-        <>
-          <div className="output-section">
-            <h3>{t.obligations}</h3>
-            {obligations && obligations.length ? (
-              <ul>
-                {obligations.map((line, idx) => (
-                  <li key={idx}>{line}</li>
-                ))}
-              </ul>
-            ) : (
-              <p>{t.none}</p>
-            )}
-          </div>
+      {/* Obligations */}
+      <div className="output-section">
+        <h3>{t.obligations}</h3>
+        {obligations && obligations.length ? (
+          <ul>
+            {obligations.map((line, idx) => (
+              <li key={idx}>{line}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>{t.none}</p>
+        )}
+      </div>
 
-          <div className="output-section">
-            <h3>{t.eligibility}</h3>
-            <p>{eligibility || t.none}</p>
-          </div>
+      {/* Eligibility */}
+      <div className="output-section">
+        <h3>{t.eligibility}</h3>
+        <p>{eligibility || t.none}</p>
+      </div>
 
-          <div className="output-section">
-            <h3>{t.documents}</h3>
-            {documents && documents.length ? (
-              <ul>
-                {documents.map((line, idx) => (
-                  <li key={idx}>{line}</li>
-                ))}
-              </ul>
-            ) : (
-              <p>{t.none}</p>
-            )}
-          </div>
+      {/* Documents */}
+      <div className="output-section">
+        <h3>{t.documents}</h3>
+        {documents && documents.length ? (
+          <ul>
+            {documents.map((line, idx) => (
+              <li key={idx}>{line}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>{t.none}</p>
+        )}
+      </div>
 
-          <div className="output-section">
-            <h3>{t.steps}</h3>
-            {steps && steps.length ? (
-              <ol>
-                {steps.map((line, idx) => (
-                  <li key={idx}>{line}</li>
-                ))}
-              </ol>
-            ) : (
-              <p>{t.none}</p>
-            )}
-          </div>
-        </>
-      )}
+      {/* Steps */}
+      <div className="output-section">
+        <h3>{t.steps}</h3>
+        {steps && steps.length ? (
+          <ol>
+            {steps.map((line, idx) => (
+              <li key={idx}>{line}</li>
+            ))}
+          </ol>
+        ) : (
+          <p>{t.none}</p>
+        )}
+      </div>
 
       <p className="disclaimer">{t.disclaimer}</p>
     </section>
